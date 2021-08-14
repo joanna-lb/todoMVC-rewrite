@@ -1,0 +1,20 @@
+.info {
+    margin: 65px auto 0;
+    color: #bfbfbf;
+    font-size: 11px;
+    text-align: center;
+}
+
+.info p {
+    line-height: 1;
+}
+
+.info a {
+    color: #bfbfbf;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
