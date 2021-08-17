@@ -41,18 +41,17 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     const handleComplete = async (id: string, e: any) => {
         if (e.target.checked) {
             await updateTodoAction(id, {isComplete: true})
-            changeCompleteStatus({id, status: true})
+           dispatch(changeCompleteStatus({id, status: true}))
             setCompleteStyle(true)
         } else {
-
             await updateTodoAction(id, {isComplete: false})
-            changeCompleteStatus({id, status: false})
+            dispatch(changeCompleteStatus({id, status: false}))
             setCompleteStyle(false)
         }
     }
 
     const handleClickDestroy= async (id:string) => {
-        console.log('destroy')
+
         await deleteTodoAction(id)
           dispatch(deleteTodo(id));
     }

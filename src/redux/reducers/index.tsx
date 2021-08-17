@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import type {RootState} from "../store";
-import {newTodos} from "../../shared";
 import { todoType} from "../types";
+import {leftItemsCount} from "../../shared";
 
 
 type changeStatusType = {
@@ -64,7 +63,7 @@ export const todoSlice = createSlice({
         clearComplete: (state) => {
          state= state.filter(todo => !todo.isComplete)
             return state
-        }
+        },
     }
 })
 export const {

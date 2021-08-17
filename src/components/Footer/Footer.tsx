@@ -35,7 +35,7 @@ const Footer = ({changeShowContent,showContent}:FooterPropsType) => {
         <footer className='footer'>
             <TodoCount/>
             <Filters changeShowContent={changeShowContent}/>
-            <button data-testid='button' className='clear-completed' style={{visibility:checkAnyComplete(showContent)?"visible":"hidden"}}
+            <button data-testid='button' className='clear-completed' style={{visibility:checkAnyComplete(todos)?"visible":"hidden"}}
                     onClick={handleClearComplete}>
                 Clear completed
             </button>

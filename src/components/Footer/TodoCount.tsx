@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/hook";
 const TodoCount = () => {
     const todos=useAppSelector(state=>state.todos)
     const dispatch=useAppDispatch()
+
     return (
         <span
             className='todo-count'>{`${leftItemsCount(todos)} item left`}

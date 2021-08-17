@@ -35,7 +35,6 @@ function Todo() {
                     dispatch(setTodoList(res.data))
                 }
             }
-
         )
 
     },[todos.length,leftItemsCount(todos)])

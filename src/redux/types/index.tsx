@@ -1,5 +1,4 @@
-// type todosType=
-//    todoType[]
+
 
 type todoType={
         id:string,
@@ -8,8 +7,5 @@ type todoType={
 
 }
 
- type changeStatusType={
-        id:string,
-        status:boolean
-}
-export {todoType,changeStatusType}
+
+export {todoType}
