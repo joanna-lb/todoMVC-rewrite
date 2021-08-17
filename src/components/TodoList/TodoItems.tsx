@@ -51,7 +51,6 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     }
 
     const handleClickDestroy= async (id:string) => {
-
         await deleteTodoAction(id)
           dispatch(deleteTodo(id));
     }

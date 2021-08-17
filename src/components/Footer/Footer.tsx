@@ -28,7 +28,7 @@ const Footer = ({changeShowContent,showContent}:FooterPropsType) => {
              }
             }
         )
-        await clearComplete()
+        await dispatch(clearComplete())
     }
 
     return (
