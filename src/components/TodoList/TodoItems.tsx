@@ -1,6 +1,6 @@
 
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './index.css'
 import {deleteTodoAction, updateTodoAction} from "../../pages";
 import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/reducers";
@@ -19,56 +19,62 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     const dispatch=useAppDispatch()
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)
+    const[completeStyle,setCompleteStyle]=useState(false)
 
-    const handleKeyUp = async (e:any, id:string, name:string) => {
+    useEffect(()=>setCompleteStyle(isComplete),[])
+
+    const handleKeyUp = async (e:any, id:string, todoName:string) => {
         const reg = new RegExp(/^\s+$/)
-        if (e.keyCode === 13 && !reg.test(name) && name.length > 0) {
-            console.log(name)
-            await updateTodoAction(id, {name: name})
-              await  dispatch(editTodoList({id, name})) ;
+        if (e.keyCode === 13 && !reg.test(todoName) && todoName.length > 0) {
+            await updateTodoAction(id, {name: todoName})
+              await  dispatch(editTodoList({id, name:todoName})) ;
                 setIsEdit(false)
-        } else if (name.length === 0 && e.keyCode === 13) {
-            console.log('delete')
+        } else if (todoName.length === 0 && e.keyCode === 13) {
             await deleteTodoAction(id)
-             await   deleteTodo(id)
+             await  deleteTodo(id)
                 setIsEdit(false)
         }
 
+
    }
 
-    const handleComplete =async (id:string, e:any) => {
-        if(e.target.checked){
-            await updateTodoAction(id, {isComplete:true})
-           await changeCompleteStatus({id, status:true})
-        }else {
-            await updateTodoAction(id, {isComplete:false})
-           await changeCompleteStatus({id, status:false})
+    const handleComplete = async (id: string, e: any) => {
+        if (e.target.checked) {
+            await updateTodoAction(id, {isComplete: true})
+            changeCompleteStatus({id, status: true})
+            setCompleteStyle(true)
+        } else {
+
+            await updateTodoAction(id, {isComplete: false})
+            changeCompleteStatus({id, status: false})
+            setCompleteStyle(false)
         }
     }
 
     const handleClickDestroy= async (id:string) => {
+        console.log('destroy')
         await deleteTodoAction(id)
-         await   dispatch(deleteTodo(id));
+          dispatch(deleteTodo(id));
     }
 
     return (
         <>
             {
-                < li key={id} className={(isComplete) ? 'completed' : 'none'}>
+                < li key={id} className={completeStyle ?'completed': 'none'}>
                     {!isEdit && < div className='view'>
-                        <input className='toggle' type='checkbox'
-                               onChange={(e) => handleComplete(id, e)}
-                        />
-                        <label
-                            className={isComplete ? 'checkbox-checked' : 'checkbox-unchecked'}
+
+                        <div
+                            className={completeStyle ? 'checkbox-checked' : 'checkbox-unchecked'}
                             onDoubleClick={() => setIsEdit(true)}
-                        >{name === '' ? name : todoName}</label>
-                        <button className='destroy' data-testid="destroy"
+                        > <input className='checkbox-input' type='checkbox'
+                                 onChange={(e) => handleComplete(id, e)}
+                        /><span className='list-items'>{name === '' ? name : todoName}</span></div>
+                        <div className='destroy' data-testid="destroy"
                                 onClick={()=>handleClickDestroy(id)}
-                        >x</button>
+                        >&#x2715;</div>
                     </div>}
                     {isEdit && <input className='edit' value={todoName}
-                                   onKeyUp={(e) => handleKeyUp(e, id, name)}
+                                   onKeyUp={(e) => handleKeyUp(e, id, todoName)}
                                       onChange={(e) => setTodoName(e.target.value)}
                     />}
                 </li>

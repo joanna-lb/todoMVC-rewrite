@@ -7,7 +7,6 @@ html, body {
 button {
     border: none;
     background: none;
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -22,13 +21,11 @@ body {
 
 
 
-input{
-    outline: none;
-}
 
 .hidden {
     display: none;
 }
+/*!*hidden 单独放起来*!*/
 
 
 

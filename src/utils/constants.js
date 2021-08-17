@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ADD_TODO = exports.SET_TODO_LIST = exports.CLEAR_ALL_COMPLETES = exports.SET_ALL_TASKS_AS_COMPLETED = void 0;
-// export const FILTERS_TYPES = {
-//     All: 'All',
-//     Active: 'Active',
-//     Completed: 'Completed'
-// }
-//
+exports.ADD_TODO = exports.SET_TODO_LIST = exports.CLEAR_ALL_COMPLETES = exports.SET_ALL_TASKS_AS_COMPLETED = exports.FILTERS_TYPES = void 0;
+exports.FILTERS_TYPES = {
+    All: 'All',
+    Active: 'Active',
+    Completed: 'Completed'
+};
 //
 // export const CLEAR_COMPLETE='CLEAR_COMPLETE'
 //
