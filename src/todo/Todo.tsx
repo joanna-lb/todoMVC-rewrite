@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from "react";
 // import TodoList from "../../components/TodoList/TodoList";
- import Header from "../../components/Header/Header";
-import Description from "../../components/Description/Description";
+ import Header from "../components/Header/Header";
+import Description from "../components/Description/Description";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import * as constants from '../../utils/constants'
+import * as constants from '../utils/constants'
 
 // import Footer from "../../components/Footer/Footer";
 // import {connect} from "react-redux";
 // import {FILTERS_TYPES} from "../../utils/constants";
 // import {fetchTodoList, leftItemsCount} from "../../shared";
 // import {setTodoList} from "../../redux/action";
-import {fetchTodoList} from '../../Server'
+import {fetchTodoList} from '../Server'
 
-import {addTodo, setTodoList} from "../../redux/reducers";
-import TodoList from "../../components/TodoList/TodoList";
-import {useAppDispatch, useAppSelector} from "../../redux/hook";
-import Footer from "../../components/Footer/Footer";
-import {leftItemsCount} from "../../shared";
+import {addTodo, setTodoList} from "../redux/reducers";
+import TodoList from "../components/TodoList/TodoList";
+import {useAppDispatch, useAppSelector} from "../redux/hook";
+import Footer from "../components/Footer/Footer";
+import {leftItemsCount} from "../shared";
 
 
 
