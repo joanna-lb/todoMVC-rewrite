@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import Filters from "./Filters";
 import TodoCount from "./TodoCount";
 import './index.css'
-import {connect} from "react-redux";
+
 
 import {useAppDispatch, useAppSelector} from "../../redux/hook";
-import {todosType} from "../../redux/types";
-import {deleteTodoAction} from "../../pages";
+
+import {deleteTodoAction} from "../../Server";
 import {clearComplete} from "../../redux/reducers";
 import {checkAnyComplete} from "../../shared";
 

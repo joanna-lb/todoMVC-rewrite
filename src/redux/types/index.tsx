@@ -1,5 +1,5 @@
-type todosType=
-   todoType[]
+// type todosType=
+//    todoType[]
 
 type todoType={
         id:string,
@@ -12,4 +12,4 @@ type todoType={
         id:string,
         status:boolean
 }
-export {todoType,todosType,changeStatusType}
+export {todoType,changeStatusType}

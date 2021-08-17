@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from "react";
 import './index.css'
-import {deleteTodoAction, updateTodoAction} from "../../pages";
+import {deleteTodoAction, updateTodoAction} from "../../Server";
 import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/reducers";
 import {useAppDispatch, useAppSelector} from "../../redux/hook";
 

@@ -2,13 +2,13 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import './index.css'
 import { newTodos} from "../../shared";
-import {createTodo, updateTodoAction}  from '../../pages'
+import {createTodo, updateTodoAction}  from '../../Server'
 import {addTodo, clearAllCompletes, setAllTasksAsCompleted} from "../../redux/reducers";
 
 import {useAppSelector,useAppDispatch} from "../../redux/hook";
 
-import {updateAllTodosAction} from "../../pages";
-import {todosType, todoType} from "../../redux/types";
+import {updateAllTodosAction} from "../../Server";
+import { todoType} from "../../redux/types";
 const Header = () => {
     const todos=useAppSelector(state=>state.todos)
     const dispatch=useAppDispatch()

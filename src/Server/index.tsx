@@ -1,6 +1,6 @@
-//server-名字
+
 import axios from "axios";
-import {todosType, todoType} from "../redux/types";
+import {todoType} from "../redux/types";
 
 
 export const BASE_URL = 'http://localhost:3000/todos'

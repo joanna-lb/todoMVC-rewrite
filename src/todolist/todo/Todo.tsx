@@ -11,7 +11,7 @@ import * as constants from '../../utils/constants'
 // import {FILTERS_TYPES} from "../../utils/constants";
 // import {fetchTodoList, leftItemsCount} from "../../shared";
 // import {setTodoList} from "../../redux/action";
-import {fetchTodoList} from '../../pages'
+import {fetchTodoList} from '../../Server'
 
 import {addTodo, setTodoList} from "../../redux/reducers";
 import TodoList from "../../components/TodoList/TodoList";

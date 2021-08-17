@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
+
 import TodoItems from "./TodoItems";
-import {todosType, todoType} from "../../redux/types";
+import { todoType} from "../../redux/types";
 
 
 type TodoListPropsType= {
-    todos:todosType
+    todos:Array<todoType>
 }
 
 const TodoList = ({todos}:TodoListPropsType) => {
@@ -13,7 +13,7 @@ const TodoList = ({todos}:TodoListPropsType) => {
     return (
         <section className='main'>
             <ul className="todo-list">
-                {todos && todos.map(todo =>
+                {todos && todos.map((todo:todoType) =>
                     <TodoItems
                         key={todo.id}
                         {...todo}
