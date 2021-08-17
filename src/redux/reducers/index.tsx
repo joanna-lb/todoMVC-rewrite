@@ -48,15 +48,9 @@ export const todoSlice = createSlice({
             })
             return state
         },
-        setAllTasksAsCompleted: (state) => {
+        setAllTasksCompleteStatus: (state,action:PayloadAction<boolean>) => {
           state=  state.map((todo: todoType) => {
-             return  {...todo,isComplete:true}
-            })
-            return state
-        },
-        clearAllCompletes: (state) => {
-           state= state.map((todo: todoType) => {
-                return {...todo, isComplete: false}
+                return {...todo, isComplete: action.payload}
             })
             return state
         },
@@ -72,8 +66,7 @@ export const {
     deleteTodo,
     changeCompleteStatus,
     editTodoList,
-    clearAllCompletes,
-    setAllTasksAsCompleted,
+    setAllTasksCompleteStatus,
     clearComplete
 } = todoSlice.actions
 //export const selectTodos=(state:RootState)=>state.todoList.todos

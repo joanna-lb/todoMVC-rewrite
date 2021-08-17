@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import './index.css'
 import { newTodos} from "../../shared";
 import {createTodo, updateTodoAction}  from '../../Server'
-import {addTodo, clearAllCompletes, setAllTasksAsCompleted} from "../../redux/reducers";
+import {addTodo,setAllTasksCompleteStatus} from "../../redux/reducers";
 
 import {useAppSelector,useAppDispatch} from "../../redux/hook";
 
@@ -30,14 +30,14 @@ const Header = () => {
 
 
     const handleCompleteAll = async () => {
-        setAllCompleteArrowStyle(!allCompleteArrowStyle)
         if (todos.filter((todo: todoType) => !todo.isComplete).length > 0) {
             await updateAllTodosAction(todos, {isComplete: true})
-            setAllTasksAsCompleted()
-          console.log(todos)
+            dispatch(setAllTasksCompleteStatus(true))
+            setAllCompleteArrowStyle(true)
         } else if (todos.filter((todo: todoType) => todo.isComplete).length > 0) {
             await updateAllTodosAction(todos, {isComplete: false})
-            clearAllCompletes()
+            dispatch(setAllTasksCompleteStatus(false))
+            setAllCompleteArrowStyle(false)
         }
     }
 

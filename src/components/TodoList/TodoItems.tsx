@@ -19,9 +19,7 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     const dispatch=useAppDispatch()
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)
-    const[completeStyle,setCompleteStyle]=useState(false)
 
-    useEffect(()=>setCompleteStyle(isComplete),[])
 
     const handleKeyUp = async (e:any, id:string, todoName:string) => {
         const reg = new RegExp(/^\s+$/)
@@ -42,11 +40,9 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
         if (e.target.checked) {
             await updateTodoAction(id, {isComplete: true})
            dispatch(changeCompleteStatus({id, status: true}))
-            setCompleteStyle(true)
         } else {
             await updateTodoAction(id, {isComplete: false})
             dispatch(changeCompleteStatus({id, status: false}))
-            setCompleteStyle(false)
         }
     }
 
@@ -58,11 +54,11 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     return (
         <>
             {
-                < li key={id} className={completeStyle ?'completed': 'none'}>
+                < li key={id} className={isComplete ?'completed': 'none'}>
                     {!isEdit && < div className='view'>
 
                         <div
-                            className={completeStyle ? 'checkbox-checked' : 'checkbox-unchecked'}
+                            className={isComplete ? 'checkbox-checked' : 'checkbox-unchecked'}
                             onDoubleClick={() => setIsEdit(true)}
                         > <input className='checkbox-input' type='checkbox'
                                  onChange={(e) => handleComplete(id, e)}
