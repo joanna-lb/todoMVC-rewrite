@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeCompleteStatus = exports.setAllTasksCompleteStatus = exports.addTodo = exports.setTodoList = void 0;
+exports.editTodoList = exports.deleteTodo = exports.changeCompleteStatus = exports.setAllTasksCompleteStatus = exports.addTodo = exports.setTodoList = void 0;
 const constants_1 = require("../utils/constants");
 const setTodoList = (todos) => {
     return ({ type: constants_1.SET_TODO_LIST, data: todos });
@@ -18,4 +18,12 @@ const changeCompleteStatus = (id, status) => {
     return ({ type: constants_1.CHANGE_COMPLETE_STATUS, payload: { id, isComplete: status } });
 };
 exports.changeCompleteStatus = changeCompleteStatus;
+const deleteTodo = (id) => {
+    return ({ type: constants_1.DELETE_TODO, payload: { id } });
+};
+exports.deleteTodo = deleteTodo;
+const editTodoList = (id, name) => {
+    return ({ type: constants_1.EDIT_TODO_LIST, payload: { id, name } });
+};
+exports.editTodoList = editTodoList;
 //# sourceMappingURL=action.js.map

@@ -6,7 +6,7 @@ import {deleteTodoAction, updateTodoAction} from "../../Server";
 // import {useAppDispatch, useAppSelector} from "../../redux/hook";
 // import * as types from '../../redux/types'
 import {TodoType,TodoPropsType} from "../../types";
-import {changeCompleteStatus} from "../../redux/action";
+import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/action";
 
 // type TodoPropsType= {
 //     id: string,
@@ -19,21 +19,21 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)
 
-   //
-   //  const handleKeyUp = async (e:any, id:string, todoName:string) => {
-   //      const reg = new RegExp(/^\s+$/)
-   //      if (e.keyCode === 13 && !reg.test(todoName) && todoName.length > 0) {
-   //          await updateTodoAction(id, {name: todoName})
-   //            await  dispatch(editTodoList({id, name:todoName})) ;
-   //              setIsEdit(false)
-   //      } else if (todoName.length === 0 && e.keyCode === 13) {
-   //          await deleteTodoAction(id)
-   //           await  deleteTodo(id)
-   //              setIsEdit(false)
-   //      }
-   //
-   //
-   // }
+
+    const handleKeyUp = async (e:any, id:string, todoName:string) => {
+        const reg = new RegExp(/^\s+$/)
+        if (e.keyCode === 13 && !reg.test(todoName) && todoName.length > 0) {
+            await updateTodoAction(id, {name: todoName})
+            editTodoList(id, todoName) ;
+                setIsEdit(false)
+        } else if (todoName.length === 0 && e.keyCode === 13) {
+            await deleteTodoAction(id)
+            deleteTodo(id)
+                setIsEdit(false)
+        }
+
+
+   }
 
     const handleComplete = async (id: string, e: any) => {
         if (e.target.checked) {
@@ -45,10 +45,10 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
         }
     }
 
-    // const handleClickDestroy= async (id:string) => {
-    //     await deleteTodoAction(id)
-    //       dispatch(deleteTodo(id));
-    // }
+    const handleClickDestroy= async (id:string) => {
+        await deleteTodoAction(id)
+        deleteTodo(id);
+    }
 
     return (
         <>
@@ -67,7 +67,7 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
                                     <span className='list-items'>{name === '' ? name : todoName}</span>
                                 </div>
                                 <span className='destroy' data-testid="destroy"
-                                      // onClick={() => handleClickDestroy(id)}
+                                      onClick={() => handleClickDestroy(id)}
                                 >x
                             </span>
                             </div>
@@ -75,7 +75,7 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
                         </>
                     }
                     {isEdit && <input className='edit' value={todoName}
-                                   // onKeyUp={(e) => handleKeyUp(e, id, todoName)}
+                                   onKeyUp={(e) => handleKeyUp(e, id, todoName)}
                                       onChange={(e) => setTodoName(e.target.value)}
                     />}
 

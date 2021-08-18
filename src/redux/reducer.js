@@ -23,6 +23,17 @@ function todoReducer(state = initialState, action) {
                 return todo;
             });
             return state;
+        case constants_1.DELETE_TODO:
+            state = state.filter((todo) => todo.id !== action.payload.id);
+            return state;
+        case constants_1.EDIT_TODO_LIST:
+            state = state.map((todo) => {
+                if (todo.id === action.payload.id) {
+                    return Object.assign(Object.assign({}, todo), { name: action.payload.name });
+                }
+                return todo;
+            });
+            return state;
         default:
             return state;
     }

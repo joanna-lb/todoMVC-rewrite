@@ -1,4 +1,10 @@
-import {SET_TODO_LIST, ADD_TODO, CHANGE_COMPLETE_STATUS, SET_ALL_TASKS_COMPLETE_STATUS} from "../utils/constants";
+import {
+    SET_TODO_LIST,
+    ADD_TODO,
+    CHANGE_COMPLETE_STATUS,
+    SET_ALL_TASKS_COMPLETE_STATUS,
+    DELETE_TODO, EDIT_TODO_LIST
+} from "../utils/constants";
 import {TodoListActionTypes, TodoType} from "../types";
 import exp from "constants";
 
@@ -22,6 +28,17 @@ export default function todoReducer(state=initialState,action:TodoListActionType
             state= state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return {...todo, isComplete: action.payload.isComplete}
+                }
+                return todo;
+            })
+            return state
+        case DELETE_TODO:
+            state=state.filter((todo: TodoType) => todo.id !== action.payload.id)
+            return state
+        case EDIT_TODO_LIST:
+            state= state.map((todo: TodoType) => {
+                if (todo.id === action.payload.id) {
+                    return {...todo, name: action.payload.name}
                 }
                 return todo;
             })
