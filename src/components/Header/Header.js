@@ -6,7 +6,7 @@ const react_1 = require("react");
 require("./index.css");
 const shared_1 = require("../../shared");
 const Server_1 = require("../../Server");
-const Header = ({ todos }) => {
+const Header = ({ todos, addTodo }) => {
     // const todos=useAppSelector(state=>state.todos)
     // const dispatch=useAppDispatch()
     const [name, setName] = react_1.useState('');
@@ -17,7 +17,7 @@ const Header = ({ todos }) => {
         if (!reg.test(name) && name.length > 0) {
             const newTodo = shared_1.newTodos(name);
             yield Server_1.createTodo(newTodo);
-            // addTodo(newTodo)
+            addTodo(newTodo);
             setName("");
         }
     });

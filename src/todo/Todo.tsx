@@ -16,10 +16,11 @@ interface DispatchProps {
     //addTodo(text: string): void,
     todos:Array<TodoType>
     setTodoList:(todos:Array<TodoType>)=>void
+    addTodo:(todo:TodoType)=>void
 }
 
 
-function Todo({setTodoList,todos}:DispatchProps) {
+function Todo({setTodoList,todos,addTodo}:DispatchProps) {
 
     const [showContent,setShowContent]=useState(todos);
 
@@ -53,7 +54,7 @@ function Todo({setTodoList,todos}:DispatchProps) {
     return (
         <>
             <section className="todoapp">
-                <Header todos={todos}/>
+                <Header todos={todos} addTodo={addTodo}/>
                 <TodoList todos={showContent}/>
                 {/*{todos.length > 0 && <Footer changeShowContent={handleChangeShowContent} showContent={showContent}/>}*/}
             </section>

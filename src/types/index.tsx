@@ -1,4 +1,4 @@
-
+import Todo from "../todo/Todo";
 
 
 export interface TodoType  {
@@ -25,7 +25,8 @@ export interface TodoPropsType {
 
 export interface TodoListActionTypes {
         type: string,
-        payload: TodoType[],
+        payload:TodoType
+        data:TodoType[]
 }
 
 

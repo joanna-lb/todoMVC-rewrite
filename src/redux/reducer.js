@@ -5,7 +5,10 @@ const initialState = [];
 function todoReducer(state = initialState, action) {
     switch (action.type) {
         case constants_1.SET_TODO_LIST:
-            state = action.payload;
+            state = action.data;
+            return state;
+        case constants_1.ADD_TODO:
+            state = [...state, action.payload];
             return state;
         default:
             return state;

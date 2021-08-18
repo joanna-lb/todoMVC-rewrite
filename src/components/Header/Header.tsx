@@ -5,14 +5,15 @@ import { newTodos} from "../../shared";
 import {createTodo}  from '../../Server'
 import {updateAllTodosAction} from "../../Server";
 import {TodoType} from "../../types";
+import {addTodo} from "../../redux/action";
 
 
 
 interface HeaderProps {
-    // addTodo:(todo:TodoType)=>void
-    todos:Array<TodoType>
+     addTodo:(todo:TodoType)=>void
+     todos:Array<TodoType>
 }
-const Header = ({todos}:HeaderProps) => {
+const Header = ({todos,addTodo}:HeaderProps) => {
     // const todos=useAppSelector(state=>state.todos)
     // const dispatch=useAppDispatch()
     const [name, setName] = useState('')
@@ -25,7 +26,7 @@ const Header = ({todos}:HeaderProps) => {
         if (!reg.test(name) && name.length > 0) {
             const newTodo = newTodos(name)
             await createTodo(newTodo)
-          // addTodo(newTodo)
+            addTodo(newTodo)
             setName("");
         }
     }

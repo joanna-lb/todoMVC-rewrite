@@ -2,14 +2,18 @@ import {SET_TODO_LIST,ADD_TODO} from "../utils/constants";
 import {TodoListActionTypes, TodoType} from "../types";
 import exp from "constants";
 
-const initialState:TodoType[]=[]
+const initialState:Array<TodoType>=[]
 
 
-export default function todoReducer(state=initialState,action:TodoListActionTypes): TodoType[] {
+export default function todoReducer(state=initialState,action:TodoListActionTypes): Array<TodoType> {
     switch (action.type) {
         case SET_TODO_LIST:
-           state=action.payload
+           state= action.data
             return state
+        case ADD_TODO:
+            state=[...state,action.payload]
+           return state
+
             default:
                 return state
 
