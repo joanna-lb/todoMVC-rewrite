@@ -1,18 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { todoType} from "../types";
+import { TodoType,EditType, ChangeStatusType} from "../types";
 import {leftItemsCount} from "../../shared";
 
 
-type changeStatusType = {
-    id: string,
-    status: boolean
-}
-type editType = {
-    id: string,
-    name: string
-}
-
-const initialState: todoType[] = []
+const initialState:TodoType[] = []
 
 
 export const todoSlice = createSlice({
@@ -26,11 +17,11 @@ export const todoSlice = createSlice({
             state.push(action.payload)
         },
         deleteTodo: (state, action: PayloadAction<string>) => {
-          state=state.filter((todo: todoType) => todo.id !== action.payload)
+          state=state.filter((todo: TodoType) => todo.id !== action.payload)
             return state
         },
-        changeCompleteStatus: (state, action: PayloadAction<changeStatusType>) => {
-           state= state.map((todo: todoType) => {
+        changeCompleteStatus: (state, action: PayloadAction<ChangeStatusType>) => {
+           state= state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return {...todo, isComplete: action.payload.status}
                 }
@@ -39,8 +30,8 @@ export const todoSlice = createSlice({
             return state
 
         },
-        editTodoList: (state, action: PayloadAction<editType>) => {
-           state= state.map((todo: todoType) => {
+        editTodoList: (state, action: PayloadAction<EditType>) => {
+           state= state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return {...todo, name: action.payload.name}
                 }
@@ -49,7 +40,7 @@ export const todoSlice = createSlice({
             return state
         },
         setAllTasksCompleteStatus: (state,action:PayloadAction<boolean>) => {
-          state=  state.map((todo: todoType) => {
+          state=  state.map((todo: TodoType) => {
                 return {...todo, isComplete: action.payload}
             })
             return state

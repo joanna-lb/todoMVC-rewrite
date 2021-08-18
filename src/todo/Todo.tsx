@@ -28,7 +28,7 @@ function Todo() {
 
     // @ts-ignore
     useEffect(    async ()=>{
-        const response=  await fetchTodoList().then(
+        await fetchTodoList().then(
             res=> {
                 if (res.data) {
                     setShowContent(res.data);

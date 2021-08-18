@@ -1,6 +1,6 @@
 import {nanoid} from "nanoid";
-import {todoType} from "../redux/types";
-
+import * as types from '../redux/types'
+import {TodoType} from "../redux/types";
 
 const newTodos = (name:string) => {
     return {
@@ -11,11 +11,12 @@ const newTodos = (name:string) => {
 }
 const leftItemsCount = (todos:any) => {
     return todos.length>0 &&
-        (todos).filter((todo:todoType) => !todo.isComplete).length;
+        (todos).filter((todo:TodoType) => !todo.isComplete).length;
 }
 
 const checkAnyComplete = (todos:any) => {
-    return todos.filter((todo:todoType) => todo.isComplete).length > 0
+    return todos.length>0 &&
+    todos.filter((todo:TodoType) => todo.isComplete).length > 0
 }
 
 export {newTodos,leftItemsCount,checkAnyComplete}

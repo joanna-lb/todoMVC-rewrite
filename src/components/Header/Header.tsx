@@ -5,15 +5,15 @@ import { newTodos} from "../../shared";
 import {createTodo}  from '../../Server'
 import {addTodo,setAllTasksCompleteStatus} from "../../redux/reducers";
 import {useAppSelector,useAppDispatch} from "../../redux/hook";
-
 import {updateAllTodosAction} from "../../Server";
-import { todoType} from "../../redux/types";
+// import * as types from '../../redux/types'
+import {TodoType} from "../../redux/types";
+
 const Header = () => {
     const todos=useAppSelector(state=>state.todos)
     const dispatch=useAppDispatch()
-    const [name, setName] = useState<string>("")
+    const [name, setName] = useState('')
     const [allCompleteArrowStyle, setAllCompleteArrowStyle] = useState(false)
-
 
 
     const handleSubmit =async (e:any) => {
@@ -29,11 +29,11 @@ const Header = () => {
 
 
     const handleCompleteAll = async () => {
-        if (todos.filter((todo: todoType) => !todo.isComplete).length > 0) {
+        if (todos.filter((todo: TodoType) => !todo.isComplete).length > 0) {
             await updateAllTodosAction(todos, {isComplete: true})
             dispatch(setAllTasksCompleteStatus(true))
             setAllCompleteArrowStyle(true)
-        } else if (todos.filter((todo: todoType) => todo.isComplete).length > 0) {
+        } else if (todos.filter((todo: TodoType) => todo.isComplete).length > 0) {
             await updateAllTodosAction(todos, {isComplete: false})
             dispatch(setAllTasksCompleteStatus(false))
             setAllCompleteArrowStyle(false)

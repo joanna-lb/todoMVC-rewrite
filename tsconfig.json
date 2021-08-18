@@ -15,7 +15,7 @@
     "jsx": "react",
     "importHelpers": true,
     "baseUrl": ".",
-    "noEmit": true
+//    "noEmit": true
   },
   "exclude": [
     "node_modules",

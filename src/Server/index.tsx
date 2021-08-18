@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import {todoType} from "../redux/types";
+import {TodoType} from "../redux/types";
 
 
 export const BASE_URL = 'http://localhost:3000/todos'
@@ -19,12 +19,17 @@ const updateTodoAction = (id:string, data:object) => axios.patch(`${BASE_URL}/${
 
 
 const updateAllTodosAction=(data:any,isComplete:object)=>{
-  data.forEach((todo:todoType)=>axios.patch(`${BASE_URL}/${todo.id}`,isComplete))
+  data.forEach((todo:TodoType)=>axios.patch(`${BASE_URL}/${todo.id}`,isComplete))
 }
 
 const createTodo = (todo:object) => {
    return axios.post(BASE_URL,todo)
 }
 
-export {updateTodoAction,
-createTodo,fetchTodoList,deleteTodoAction,updateAllTodosAction}
+export {
+    updateTodoAction,
+    createTodo,
+    fetchTodoList,
+    deleteTodoAction,
+    updateAllTodosAction
+}
