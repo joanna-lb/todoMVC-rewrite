@@ -5,12 +5,9 @@ const react_1 = tslib_1.__importDefault(require("react"));
 const Filters_1 = tslib_1.__importDefault(require("./Filters"));
 const TodoCount_1 = tslib_1.__importDefault(require("./TodoCount"));
 require("./index.css");
-//
 const Server_1 = require("../../Server");
-// import {clearComplete} from "../../redux/reducers";
 const shared_1 = require("../../shared");
-const action_1 = require("../../redux/action");
-const Footer = ({ todos, changeShowContent }) => {
+const Footer = ({ todos, changeShowContent, clearComplete }) => {
     const handleClearComplete = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         yield todos.filter(todo => todo.isComplete).forEach(todo => {
             try {
@@ -20,7 +17,7 @@ const Footer = ({ todos, changeShowContent }) => {
                 console.log(e);
             }
         });
-        action_1.clearComplete();
+        clearComplete();
     });
     return (react_1.default.createElement("footer", { className: 'footer' },
         react_1.default.createElement(TodoCount_1.default, { todos: todos }),

@@ -3,18 +3,17 @@ import React, {useEffect} from "react";
 import TodoItems from "./TodoItems";
 
 import {TodoType} from "../../types";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {deleteTodo} from "../../redux/action";
+
 
 
 type TodoListPropsType= {
     todos:Array<TodoType>
     deleteTodo:(id:string)=>void
     changeCompleteStatus:(id:string,status:boolean)=>void
+    editTodoList:(id:string,name:string)=>void
 }
 
-const TodoList = ({todos,deleteTodo,changeCompleteStatus}:TodoListPropsType) => {
+const TodoList = ({todos,deleteTodo,changeCompleteStatus,editTodoList}:TodoListPropsType) => {
 
     return (
         <section className='main'>
@@ -24,7 +23,8 @@ const TodoList = ({todos,deleteTodo,changeCompleteStatus}:TodoListPropsType) => 
                         key={todo.id}
                         {...todo}
                         deleteTodo={deleteTodo}
-                        // changeCompleteStatus={changeCompleteStatus}
+                        changeCompleteStatus={changeCompleteStatus}
+                        editTodoList={editTodoList}
                     />
                 )}
             </ul>
@@ -32,16 +32,5 @@ const TodoList = ({todos,deleteTodo,changeCompleteStatus}:TodoListPropsType) => 
 
 
 }
-// const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-//     deleteTodo:(id:string)=>{
-//         dispatch(deleteTodo(id))
-//     }
-// });
-// export type ActionType = {
-//     type: string,
-//     id?: number,
-//     text?: string,
-//     filter?: string
-// // };
-// const TodoItemContainer = connect( mapDispatchToProps)(TodoList);
+
 export default TodoList

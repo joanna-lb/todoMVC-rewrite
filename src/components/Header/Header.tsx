@@ -5,17 +5,17 @@ import { newTodos} from "../../shared";
 import {createTodo}  from '../../Server'
 import {updateAllTodosAction} from "../../Server";
 import {TodoType} from "../../types";
-import {addTodo, setAllTasksCompleteStatus} from "../../redux/action";
+
 
 
 
 interface HeaderProps {
      addTodo:(todo:TodoType)=>void
      todos:Array<TodoType>
+    setAllTasksCompleteStatus:(status:boolean)=>void
 }
-const Header = ({todos,addTodo}:HeaderProps) => {
-    // const todos=useAppSelector(state=>state.todos)
-    // const dispatch=useAppDispatch()
+const Header = ({todos,addTodo,setAllTasksCompleteStatus}:HeaderProps) => {
+
     const [name, setName] = useState('')
     const [allCompleteArrowStyle, setAllCompleteArrowStyle] = useState(false)
 

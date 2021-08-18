@@ -2,18 +2,19 @@ import React from "react";
 import Filters from "./Filters";
 import TodoCount from "./TodoCount";
 import './index.css'
-//
+
 import {deleteTodoAction} from "../../Server";
-// import {clearComplete} from "../../redux/reducers";
+
 import {checkAnyComplete} from "../../shared";
 import {TodoType} from "../../types";
-import {clearComplete} from "../../redux/action";
+
 
 interface FooterPropsType {
      changeShowContent:(filterType:string)=>void
     todos:Array<TodoType>
+    clearComplete:()=>void
 }
-const Footer = ({todos,changeShowContent}:FooterPropsType) => {
+const Footer = ({todos,changeShowContent,clearComplete}:FooterPropsType) => {
 
 
     const handleClearComplete =async () => {

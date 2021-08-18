@@ -7,10 +7,7 @@ require("./index.css");
 const shared_1 = require("../../shared");
 const Server_1 = require("../../Server");
 const Server_2 = require("../../Server");
-const action_1 = require("../../redux/action");
-const Header = ({ todos, addTodo }) => {
-    // const todos=useAppSelector(state=>state.todos)
-    // const dispatch=useAppDispatch()
+const Header = ({ todos, addTodo, setAllTasksCompleteStatus }) => {
     const [name, setName] = react_1.useState('');
     const [allCompleteArrowStyle, setAllCompleteArrowStyle] = react_1.useState(false);
     const handleSubmit = (e) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
@@ -26,12 +23,12 @@ const Header = ({ todos, addTodo }) => {
     const handleCompleteAll = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         if (todos.filter((todo) => !todo.isComplete).length > 0) {
             yield Server_2.updateAllTodosAction(todos, { isComplete: true });
-            action_1.setAllTasksCompleteStatus(true);
+            setAllTasksCompleteStatus(true);
             setAllCompleteArrowStyle(true);
         }
         else if (todos.filter((todo) => todo.isComplete).length > 0) {
             yield Server_2.updateAllTodosAction(todos, { isComplete: false });
-            action_1.setAllTasksCompleteStatus(false);
+            setAllTasksCompleteStatus(false);
             setAllCompleteArrowStyle(false);
         }
     });

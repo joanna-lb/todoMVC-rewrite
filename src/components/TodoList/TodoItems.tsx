@@ -2,16 +2,16 @@
 import React, {useEffect, useState} from "react";
 import './index.css'
 import {deleteTodoAction, updateTodoAction} from "../../Server";
-// import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/reducers";
-// import {useAppDispatch, useAppSelector} from "../../redux/hook";
-// import * as types from '../../redux/types'
 
-import {TodoType, TodoPropsType, TodoListActionTypes, DeleteTodoType, ChangeCompleteStatus} from "../../types";
-import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/action";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
-
-const TodoItems = ({id,name,isComplete,deleteTodo}:TodoPropsType & DeleteTodoType ) => {
+interface TodoPropsType {
+    id: string,
+    name: string,
+    isComplete: boolean
+    deleteTodo:(id:string)=>void
+    changeCompleteStatus:(id:string,status:boolean)=>void
+    editTodoList:(id:string,name:string)=>void
+}
+const TodoItems = ({id,name,isComplete,deleteTodo,changeCompleteStatus,editTodoList}:TodoPropsType) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)

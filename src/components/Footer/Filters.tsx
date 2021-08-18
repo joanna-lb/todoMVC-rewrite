@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-
 import * as constants from "../../utils/constants"
-import {connect} from "react-redux";
+
 
 interface FilterPropsType {
     changeShowContent:(filterType:string)=>void

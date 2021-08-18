@@ -14,16 +14,20 @@ import {leftItemsCount} from "../shared";
 
 
 
+
 interface DispatchProps {
     todos:Array<TodoType>
     setTodoList:(todos:Array<TodoType>)=>void
     addTodo:(todo:TodoType)=>void
     deleteTodo:(id:string)=>void
     changeCompleteStatus:(id:string,status:boolean)=>void
+    setAllTasksCompleteStatus:(status:boolean)=>void
+    clearComplete:()=>void
+    editTodoList:(id:string,name:string)=>void
 }
 
 
-function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus}:DispatchProps) {
+function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus,setAllTasksCompleteStatus,clearComplete,editTodoList}:DispatchProps) {
 
     const [showContent,setShowContent]=useState(todos);
 
@@ -57,14 +61,19 @@ function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus}:Dispat
     return (
         <>
             <section className="todoapp">
-                <Header todos={todos} addTodo={addTodo}/>
+                <Header todos={todos}
+                        addTodo={addTodo}
+                        setAllTasksCompleteStatus={setAllTasksCompleteStatus}
+                />
                 <TodoList todos={showContent}
                           deleteTodo={deleteTodo}
                           changeCompleteStatus={changeCompleteStatus}
+                          editTodoList={editTodoList}
                 />
                 {todos.length > 0 && <Footer
                     todos={todos}
                     changeShowContent={handleChangeShowContent}
+                    clearComplete={clearComplete}
                     />}
             </section>
             <Description/>

@@ -4,15 +4,14 @@ const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importStar(require("react"));
 require("./index.css");
 const Server_1 = require("../../Server");
-const action_1 = require("../../redux/action");
-const TodoItems = ({ id, name, isComplete, deleteTodo }) => {
+const TodoItems = ({ id, name, isComplete, deleteTodo, changeCompleteStatus, editTodoList }) => {
     const [isEdit, setIsEdit] = react_1.useState(false);
     const [todoName, setTodoName] = react_1.useState(name);
     const handleKeyUp = (e, id, todoName) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         const reg = new RegExp(/^\s+$/);
         if (e.keyCode === 13 && !reg.test(todoName) && todoName.length > 0) {
             yield Server_1.updateTodoAction(id, { name: todoName });
-            action_1.editTodoList(id, todoName);
+            editTodoList(id, todoName);
             setIsEdit(false);
         }
         else if (todoName.length === 0 && e.keyCode === 13) {
@@ -24,11 +23,11 @@ const TodoItems = ({ id, name, isComplete, deleteTodo }) => {
     const handleComplete = (id, e) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         if (e.target.checked) {
             yield Server_1.updateTodoAction(id, { isComplete: true });
-            action_1.changeCompleteStatus(id, true);
+            changeCompleteStatus(id, true);
         }
         else {
             yield Server_1.updateTodoAction(id, { isComplete: false });
-            action_1.changeCompleteStatus(id, false);
+            changeCompleteStatus(id, false);
         }
     });
     const handleClickDestroy = (id) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
