@@ -10,6 +10,11 @@ function todoReducer(state = initialState, action) {
         case constants_1.ADD_TODO:
             state = [...state, action.payload];
             return state;
+        case constants_1.SET_ALL_TASKS_COMPLETE_STATUS:
+            state = state.map((todo) => {
+                return Object.assign(Object.assign({}, todo), { isComplete: action.payload.isComplete });
+            });
+            return state;
         case constants_1.CHANGE_COMPLETE_STATUS:
             state = state.map((todo) => {
                 if (todo.id === action.payload.id) {

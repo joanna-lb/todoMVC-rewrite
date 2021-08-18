@@ -6,6 +6,7 @@ import {deleteTodoAction, updateTodoAction} from "../../Server";
 // import {useAppDispatch, useAppSelector} from "../../redux/hook";
 // import * as types from '../../redux/types'
 import {TodoType,TodoPropsType} from "../../types";
+import {changeCompleteStatus} from "../../redux/action";
 
 // type TodoPropsType= {
 //     id: string,
@@ -14,8 +15,7 @@ import {TodoType,TodoPropsType} from "../../types";
 // }
 
 const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
-    // const todos=useAppSelector(state=>state.todos)
-    // const dispatch=useAppDispatch()
+
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)
 
@@ -35,15 +35,15 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
    //
    // }
 
-    // const handleComplete = async (id: string, e: any) => {
-    //     if (e.target.checked) {
-    //         await updateTodoAction(id, {isComplete: true})
-    //        dispatch(changeCompleteStatus({id, status: true}))
-    //     } else {
-    //         await updateTodoAction(id, {isComplete: false})
-    //         dispatch(changeCompleteStatus({id, status: false}))
-    //     }
-    // }
+    const handleComplete = async (id: string, e: any) => {
+        if (e.target.checked) {
+            await updateTodoAction(id, {isComplete: true})
+        changeCompleteStatus(id,true)
+        } else {
+            await updateTodoAction(id, {isComplete: false})
+         changeCompleteStatus(id,false)
+        }
+    }
 
     // const handleClickDestroy= async (id:string) => {
     //     await deleteTodoAction(id)
@@ -62,7 +62,7 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
                                     onDoubleClick={() => setIsEdit(true)}
                                 >
                                     <input className='checkbox-input' type='checkbox'
-                                           // onChange={(e) => handleComplete(id, e)}
+                                           onChange={(e) => handleComplete(id, e)}
                                     />
                                     <span className='list-items'>{name === '' ? name : todoName}</span>
                                 </div>

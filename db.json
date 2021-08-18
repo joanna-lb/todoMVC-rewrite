@@ -3,12 +3,12 @@
     {
       "id": "pW1US4fwUpzE8aKt5DjHE",
       "name": "bobo",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "id": "4dWvdnyaHP6MLMAKBY0IE",
       "name": "joanna",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "id": "MC7IiVPKk1iGV-klTbDR1",
@@ -23,7 +23,7 @@
     {
       "id": "vyBXRSIqOHTFYXY1BSQEW",
       "name": "jiji",
-      "isComplete": true
+      "isComplete": false
     }
   ]
 }

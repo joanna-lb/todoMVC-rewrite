@@ -1,4 +1,4 @@
-import {ADD_TODO, SET_TODO_LIST,SET_ALL_TASKS_COMPLETE_STATUS} from "../utils/constants";
+import {ADD_TODO, SET_TODO_LIST, SET_ALL_TASKS_COMPLETE_STATUS, CHANGE_COMPLETE_STATUS} from "../utils/constants";
 import {TodoType} from "../types";
 
 
@@ -13,4 +13,8 @@ const setAllTasksCompleteStatus=(status:boolean)=>{
     return({type:SET_ALL_TASKS_COMPLETE_STATUS,payload:{isComplete:status}})
 }
 
-export{setTodoList,addTodo,setAllTasksCompleteStatus}
+const changeCompleteStatus=(id:string,status:boolean)=>{
+    return({type:CHANGE_COMPLETE_STATUS,payload:{id,isComplete: status}})
+}
+
+export{setTodoList,addTodo,setAllTasksCompleteStatus,changeCompleteStatus}
