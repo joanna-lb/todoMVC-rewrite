@@ -8,6 +8,7 @@ const react_redux_1 = require("react-redux");
 const redux_1 = require("redux");
 const Server_1 = require("../Server");
 const TodoList_1 = tslib_1.__importDefault(require("../components/TodoList/TodoList"));
+const Footer_1 = tslib_1.__importDefault(require("../components/Footer/Footer"));
 const Actions = tslib_1.__importStar(require("../redux/action"));
 function Todo({ setTodoList, todos, addTodo }) {
     const [showContent, setShowContent] = react_1.useState(todos);
@@ -35,7 +36,10 @@ function Todo({ setTodoList, todos, addTodo }) {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("section", { className: "todoapp" },
             react_1.default.createElement(Header_1.default, { todos: todos, addTodo: addTodo }),
-            react_1.default.createElement(TodoList_1.default, { todos: showContent })),
+            react_1.default.createElement(TodoList_1.default, { todos: showContent }),
+            todos.length > 0 && react_1.default.createElement(Footer_1.default, { todos: todos, 
+                // changeShowContent={handleChangeShowContent}
+                showContent: showContent })),
         react_1.default.createElement(Description_1.default, null)));
 }
 const mapStateToProps = (state) => ({

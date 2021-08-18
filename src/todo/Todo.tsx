@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
 import {fetchTodoList} from '../Server'
 import TodoList from "../components/TodoList/TodoList";
-
+import Footer from "../components/Footer/Footer";
 import {TodoType} from "../types";
 import * as Actions from "../redux/action";
 
@@ -56,7 +56,10 @@ function Todo({setTodoList,todos,addTodo}:DispatchProps) {
             <section className="todoapp">
                 <Header todos={todos} addTodo={addTodo}/>
                 <TodoList todos={showContent}/>
-                {/*{todos.length > 0 && <Footer changeShowContent={handleChangeShowContent} showContent={showContent}/>}*/}
+                {todos.length > 0 && <Footer
+                    todos={todos}
+                    // changeShowContent={handleChangeShowContent}
+                    showContent={showContent}/>}
             </section>
             <Description/>
         </>
