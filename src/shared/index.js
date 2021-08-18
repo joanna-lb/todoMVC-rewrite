@@ -12,7 +12,7 @@ const newTodos = (name) => {
 exports.newTodos = newTodos;
 const leftItemsCount = (todos) => {
     return todos.length > 0 &&
-        (todos).filter((todo) => !todo.isComplete).length;
+        todos.filter((todo) => !todo.isComplete).length;
 };
 exports.leftItemsCount = leftItemsCount;
 const checkAnyComplete = (todos) => {

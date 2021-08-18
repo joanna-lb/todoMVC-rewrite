@@ -20,10 +20,12 @@ const setAllTasksCompleteStatus=(status:boolean)=>{
 }
 
 const changeCompleteStatus=(id:string,status:boolean)=>{
+
     return({type:CHANGE_COMPLETE_STATUS,payload:{id,isComplete: status}})
 }
 
 const deleteTodo=(id:string)=>{
+
     return({type:DELETE_TODO,payload:{id}})
 }
 

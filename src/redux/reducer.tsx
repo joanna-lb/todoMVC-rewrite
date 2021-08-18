@@ -44,9 +44,8 @@ export default function todoReducer(state=initialState,action:TodoListActionType
             })
             return state
         case CLEAR_COMPLETE:
-                state= state.filter(todo => !todo.isComplete)
+                state= state.filter((todo:TodoType) => !todo.isComplete)
                 return state
-
             default:
                 return state
 

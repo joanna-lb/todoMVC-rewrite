@@ -5,12 +5,7 @@ const react_1 = tslib_1.__importStar(require("react"));
 require("./index.css");
 const Server_1 = require("../../Server");
 const action_1 = require("../../redux/action");
-// type TodoPropsType= {
-//     id: string,
-//     name: string,
-//     isComplete: boolean
-// }
-const TodoItems = ({ id, name, isComplete }) => {
+const TodoItems = ({ id, name, isComplete, deleteTodo }) => {
     const [isEdit, setIsEdit] = react_1.useState(false);
     const [todoName, setTodoName] = react_1.useState(name);
     const handleKeyUp = (e, id, todoName) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
@@ -22,7 +17,7 @@ const TodoItems = ({ id, name, isComplete }) => {
         }
         else if (todoName.length === 0 && e.keyCode === 13) {
             yield Server_1.deleteTodoAction(id);
-            action_1.deleteTodo(id);
+            deleteTodo(id);
             setIsEdit(false);
         }
     });
@@ -38,7 +33,7 @@ const TodoItems = ({ id, name, isComplete }) => {
     });
     const handleClickDestroy = (id) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         yield Server_1.deleteTodoAction(id);
-        action_1.deleteTodo(id);
+        deleteTodo(id);
     });
     return (react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement("li", { key: id, className: isComplete ? 'completed' : 'none' },
         !isEdit &&

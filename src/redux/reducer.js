@@ -35,7 +35,7 @@ function todoReducer(state = initialState, action) {
             });
             return state;
         case constants_1.CLEAR_COMPLETE:
-            state = state.filter(todo => !todo.isComplete);
+            state = state.filter((todo) => !todo.isComplete);
             return state;
         default:
             return state;

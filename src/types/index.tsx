@@ -21,6 +21,15 @@ export interface TodoPropsType {
         id: string,
         name: string,
         isComplete: boolean
+        deleteTodo:(id:string)=>void
+
+}
+export interface DeleteTodoType{
+        deleteTodo:(id:string)=>void
+}
+
+export interface  ChangeCompleteStatus {
+        changeCompleteStatus:(id:string,status:boolean)=>void
 }
 
 export interface TodoListActionTypes {

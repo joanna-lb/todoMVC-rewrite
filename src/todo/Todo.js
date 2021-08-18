@@ -11,7 +11,8 @@ const TodoList_1 = tslib_1.__importDefault(require("../components/TodoList/TodoL
 const Footer_1 = tslib_1.__importDefault(require("../components/Footer/Footer"));
 const Actions = tslib_1.__importStar(require("../redux/action"));
 const constants = tslib_1.__importStar(require("../utils/constants"));
-function Todo({ setTodoList, todos, addTodo }) {
+const shared_1 = require("../shared");
+function Todo({ setTodoList, todos, addTodo, deleteTodo, changeCompleteStatus }) {
     const [showContent, setShowContent] = react_1.useState(todos);
     // @ts-ignore
     react_1.useEffect(() => tslib_1.__awaiter(this, void 0, void 0, function* () {
@@ -21,7 +22,7 @@ function Todo({ setTodoList, todos, addTodo }) {
                 setTodoList(res.data);
             }
         });
-    }), []);
+    }), [shared_1.leftItemsCount(todos), todos.length]);
     const handleChangeShowContent = (filterTypes) => {
         switch (filterTypes) {
             case constants.FILTERS_TYPES.All:
@@ -37,7 +38,7 @@ function Todo({ setTodoList, todos, addTodo }) {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("section", { className: "todoapp" },
             react_1.default.createElement(Header_1.default, { todos: todos, addTodo: addTodo }),
-            react_1.default.createElement(TodoList_1.default, { todos: showContent }),
+            react_1.default.createElement(TodoList_1.default, { todos: showContent, deleteTodo: deleteTodo, changeCompleteStatus: changeCompleteStatus }),
             todos.length > 0 && react_1.default.createElement(Footer_1.default, { todos: todos, changeShowContent: handleChangeShowContent })),
         react_1.default.createElement(Description_1.default, null)));
 }

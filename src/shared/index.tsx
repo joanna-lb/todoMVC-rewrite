@@ -11,7 +11,7 @@ const newTodos = (name:string) => {
 }
 const leftItemsCount = (todos:Array<TodoType>) => {
     return todos.length>0 &&
-        (todos).filter((todo:TodoType) => !todo.isComplete).length;
+        todos.filter((todo:TodoType) => !todo.isComplete).length;
 }
 
 const checkAnyComplete = (todos:Array<TodoType>) => {

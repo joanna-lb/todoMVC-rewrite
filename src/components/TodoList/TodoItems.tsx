@@ -5,16 +5,13 @@ import {deleteTodoAction, updateTodoAction} from "../../Server";
 // import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/reducers";
 // import {useAppDispatch, useAppSelector} from "../../redux/hook";
 // import * as types from '../../redux/types'
-import {TodoType,TodoPropsType} from "../../types";
+
+import {TodoType, TodoPropsType, TodoListActionTypes, DeleteTodoType, ChangeCompleteStatus} from "../../types";
 import {changeCompleteStatus, deleteTodo, editTodoList} from "../../redux/action";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
-// type TodoPropsType= {
-//     id: string,
-//     name: string,
-//     isComplete: boolean
-// }
-
-const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
+const TodoItems = ({id,name,isComplete,deleteTodo}:TodoPropsType & DeleteTodoType ) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [todoName, setTodoName] = useState(name)
@@ -88,5 +85,7 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
         </>
     )
 };
+
+
 
 export default TodoItems

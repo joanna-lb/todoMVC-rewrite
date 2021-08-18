@@ -10,18 +10,20 @@ import Footer from "../components/Footer/Footer";
 import {TodoType} from "../types";
 import * as Actions from "../redux/action";
 import * as constants from "../utils/constants"
+import {leftItemsCount} from "../shared";
 
 
 
 interface DispatchProps {
-    //addTodo(text: string): void,
     todos:Array<TodoType>
     setTodoList:(todos:Array<TodoType>)=>void
     addTodo:(todo:TodoType)=>void
+    deleteTodo:(id:string)=>void
+    changeCompleteStatus:(id:string,status:boolean)=>void
 }
 
 
-function Todo({setTodoList,todos,addTodo}:DispatchProps) {
+function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus}:DispatchProps) {
 
     const [showContent,setShowContent]=useState(todos);
 
@@ -36,7 +38,7 @@ function Todo({setTodoList,todos,addTodo}:DispatchProps) {
             }
         )
 
-    },[])
+    },[leftItemsCount(todos),todos.length])
 
     const handleChangeShowContent=(filterTypes:string)=>{
         switch (filterTypes) {
@@ -56,7 +58,10 @@ function Todo({setTodoList,todos,addTodo}:DispatchProps) {
         <>
             <section className="todoapp">
                 <Header todos={todos} addTodo={addTodo}/>
-                <TodoList todos={showContent}/>
+                <TodoList todos={showContent}
+                          deleteTodo={deleteTodo}
+                          changeCompleteStatus={changeCompleteStatus}
+                />
                 {todos.length > 0 && <Footer
                     todos={todos}
                     changeShowContent={handleChangeShowContent}
@@ -70,7 +75,8 @@ const mapStateToProps = (state: Array<TodoType>) => ({
     todos: state
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(Actions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+    bindActionCreators(Actions, dispatch);
 
 export default connect(
     mapStateToProps,
