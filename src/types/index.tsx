@@ -1,4 +1,4 @@
-import exp from "constants";
+
 
 
 export interface TodoType  {
@@ -22,6 +22,13 @@ export interface TodoPropsType {
         name: string,
         isComplete: boolean
 }
+
+export interface TodoListActionTypes {
+        type: string,
+        payload: TodoType[],
+}
+
+
 
 
 

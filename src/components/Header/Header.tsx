@@ -3,15 +3,18 @@ import {useEffect, useState} from "react";
 import './index.css'
 import { newTodos} from "../../shared";
 import {createTodo}  from '../../Server'
-import {addTodo,setAllTasksCompleteStatus} from "../../redux/reducers";
-import {useAppSelector,useAppDispatch} from "../../redux/hook";
 import {updateAllTodosAction} from "../../Server";
-// import * as types from '../../redux/types'
-import {TodoType} from "../../redux/types";
+import {TodoType} from "../../types";
 
-const Header = () => {
-    const todos=useAppSelector(state=>state.todos)
-    const dispatch=useAppDispatch()
+
+
+interface HeaderProps {
+    // addTodo:(todo:TodoType)=>void
+    todos:Array<TodoType>
+}
+const Header = ({todos}:HeaderProps) => {
+    // const todos=useAppSelector(state=>state.todos)
+    // const dispatch=useAppDispatch()
     const [name, setName] = useState('')
     const [allCompleteArrowStyle, setAllCompleteArrowStyle] = useState(false)
 
@@ -22,23 +25,23 @@ const Header = () => {
         if (!reg.test(name) && name.length > 0) {
             const newTodo = newTodos(name)
             await createTodo(newTodo)
-            dispatch(addTodo(newTodo))
+          // addTodo(newTodo)
             setName("");
         }
     }
 
 
-    const handleCompleteAll = async () => {
-        if (todos.filter((todo: TodoType) => !todo.isComplete).length > 0) {
-            await updateAllTodosAction(todos, {isComplete: true})
-            dispatch(setAllTasksCompleteStatus(true))
-            setAllCompleteArrowStyle(true)
-        } else if (todos.filter((todo: TodoType) => todo.isComplete).length > 0) {
-            await updateAllTodosAction(todos, {isComplete: false})
-            dispatch(setAllTasksCompleteStatus(false))
-            setAllCompleteArrowStyle(false)
-        }
-    }
+    // const handleCompleteAll = async () => {
+    //     if (todos.filter((todo: TodoType) => !todo.isComplete).length > 0) {
+    //         await updateAllTodosAction(todos, {isComplete: true})
+    //         dispatch(setAllTasksCompleteStatus(true))
+    //         setAllCompleteArrowStyle(true)
+    //     } else if (todos.filter((todo: TodoType) => todo.isComplete).length > 0) {
+    //         await updateAllTodosAction(todos, {isComplete: false})
+    //         dispatch(setAllTasksCompleteStatus(false))
+    //         setAllCompleteArrowStyle(false)
+    //     }
+    // }
 
 
     return (
@@ -46,7 +49,7 @@ const Header = () => {
             <h1>todos</h1>
             <form onSubmit={handleSubmit} className='new-todo-form'>
                 <div className='new-todo-div'
-                    onClick={() => handleCompleteAll()}
+                    // onClick={() => handleCompleteAll()}
                 >
                     { <span className={allCompleteArrowStyle ? 'toggle-all-checked' : 'toggle-all'}
                                                data-testid='toggle-all'>❯</span>}

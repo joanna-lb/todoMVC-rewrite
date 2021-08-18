@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-
+//
 import TodoItems from "./TodoItems";
 // import { todoType} from "../../redux/types";
-import {TodoType} from "../../redux/types";
+import {TodoType} from "../../types";
 
 
 type TodoListPropsType= {
