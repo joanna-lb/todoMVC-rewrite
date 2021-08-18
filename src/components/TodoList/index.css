@@ -10,6 +10,21 @@ input{
     justify-content: space-between;
 }
 
+.destroy {
+    display: none;
+    font-size: 24px;
+    align-self: center;
+    margin-right: 20px;
+    color: #cc9a9a;
+    padding: 16px 16px 16px 16px;
+
+}
+
+.view:hover .destroy{
+    display:block ;
+}
+
+
 .checkbox-checked{
     color: #d9d9d9;
     background-position: center left;
@@ -21,17 +36,8 @@ input{
     text-decoration: line-through;
     background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2359A193%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20fill%3D%22%233EA390%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22%2F%3E%3C%2Fsvg%3E");
 }
-.view::after{
-    content: 'x';
-    color: #cc9a9a;
-    margin-right: 31px;
-    align-self: center;
-    display: none;
-}
 
-.view:hover::after{
-    display:block ;
-}
+
 .checkbox-unchecked{
     background-position: center left;
     background-repeat: no-repeat;
@@ -70,19 +76,6 @@ input{
 }
 .list-items{
 margin-left:20px
-}
-
-
-
-.destroy {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
-    color: white;
 }
 
 

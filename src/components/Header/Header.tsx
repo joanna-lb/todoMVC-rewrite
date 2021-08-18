@@ -2,9 +2,8 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import './index.css'
 import { newTodos} from "../../shared";
-import {createTodo, updateTodoAction}  from '../../Server'
+import {createTodo}  from '../../Server'
 import {addTodo,setAllTasksCompleteStatus} from "../../redux/reducers";
-
 import {useAppSelector,useAppDispatch} from "../../redux/hook";
 
 import {updateAllTodosAction} from "../../Server";
@@ -23,7 +22,7 @@ const Header = () => {
         if (!reg.test(name) && name.length > 0) {
             const newTodo = newTodos(name)
             await createTodo(newTodo)
-            await dispatch(addTodo(newTodo))
+            dispatch(addTodo(newTodo))
             setName("");
         }
     }

@@ -55,26 +55,39 @@ const TodoItems = ({id,name,isComplete}:TodoPropsType) => {
         <>
             {
                 < li key={id} className={isComplete ?'completed': 'none'}>
-                    {!isEdit && < div className='view'>
+                    {!isEdit &&
+                        <>
+                            < div className='view'>
+                                <div
+                                    className={isComplete ? 'checkbox-checked' : 'checkbox-unchecked'}
+                                    onDoubleClick={() => setIsEdit(true)}
+                                >
+                                    <input className='checkbox-input' type='checkbox'
+                                           onChange={(e) => handleComplete(id, e)}
+                                    />
+                                    <span className='list-items'>{name === '' ? name : todoName}</span>
+                                </div>
+                                <span className='destroy' data-testid="destroy"
+                                      onClick={() => handleClickDestroy(id)}
+                                >x
+                            </span>
+                            </div>
 
-                        <div
-                            className={isComplete ? 'checkbox-checked' : 'checkbox-unchecked'}
-                            onDoubleClick={() => setIsEdit(true)}
-                        > <input className='checkbox-input' type='checkbox'
-                                 onChange={(e) => handleComplete(id, e)}
-                        /><span className='list-items'>{name === '' ? name : todoName}</span></div>
-                        <div className='destroy' data-testid="destroy"
-                                onClick={()=>handleClickDestroy(id)}
-                        >&#x2715;</div>
-                    </div>}
+                        </>
+                    }
                     {isEdit && <input className='edit' value={todoName}
                                    onKeyUp={(e) => handleKeyUp(e, id, todoName)}
                                       onChange={(e) => setTodoName(e.target.value)}
                     />}
+
                 </li>
+
+
+
             }
+
         </>
     )
-}
+};
 
 export default TodoItems
