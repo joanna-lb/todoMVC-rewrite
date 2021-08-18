@@ -3,12 +3,12 @@
     {
       "id": "pW1US4fwUpzE8aKt5DjHE",
       "name": "bobo",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": "4dWvdnyaHP6MLMAKBY0IE",
       "name": "joanna",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": "MC7IiVPKk1iGV-klTbDR1",
@@ -18,12 +18,12 @@
     {
       "id": "wJvbfqGNXp6Be5Mvm28KK",
       "name": "lis",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": "vyBXRSIqOHTFYXY1BSQEW",
       "name": "jiji",
-      "isComplete": false
+      "isComplete": true
     }
   ]
 }

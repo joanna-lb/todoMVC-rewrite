@@ -5,7 +5,7 @@ import { newTodos} from "../../shared";
 import {createTodo}  from '../../Server'
 import {updateAllTodosAction} from "../../Server";
 import {TodoType} from "../../types";
-import {addTodo} from "../../redux/action";
+import {addTodo, setAllTasksCompleteStatus} from "../../redux/action";
 
 
 
@@ -32,17 +32,17 @@ const Header = ({todos,addTodo}:HeaderProps) => {
     }
 
 
-    // const handleCompleteAll = async () => {
-    //     if (todos.filter((todo: TodoType) => !todo.isComplete).length > 0) {
-    //         await updateAllTodosAction(todos, {isComplete: true})
-    //         dispatch(setAllTasksCompleteStatus(true))
-    //         setAllCompleteArrowStyle(true)
-    //     } else if (todos.filter((todo: TodoType) => todo.isComplete).length > 0) {
-    //         await updateAllTodosAction(todos, {isComplete: false})
-    //         dispatch(setAllTasksCompleteStatus(false))
-    //         setAllCompleteArrowStyle(false)
-    //     }
-    // }
+    const handleCompleteAll = async () => {
+        if (todos.filter((todo: TodoType) => !todo.isComplete).length > 0) {
+            await updateAllTodosAction(todos, {isComplete: true})
+            setAllTasksCompleteStatus(true)
+            setAllCompleteArrowStyle(true)
+        } else if (todos.filter((todo: TodoType) => todo.isComplete).length > 0) {
+            await updateAllTodosAction(todos, {isComplete: false})
+            setAllTasksCompleteStatus(false)
+            setAllCompleteArrowStyle(false)
+        }
+    }
 
 
     return (
@@ -50,7 +50,7 @@ const Header = ({todos,addTodo}:HeaderProps) => {
             <h1>todos</h1>
             <form onSubmit={handleSubmit} className='new-todo-form'>
                 <div className='new-todo-div'
-                    // onClick={() => handleCompleteAll()}
+                    onClick={() => handleCompleteAll()}
                 >
                     { <span className={allCompleteArrowStyle ? 'toggle-all-checked' : 'toggle-all'}
                                                data-testid='toggle-all'>❯</span>}

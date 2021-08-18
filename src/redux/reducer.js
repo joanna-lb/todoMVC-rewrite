@@ -10,6 +10,14 @@ function todoReducer(state = initialState, action) {
         case constants_1.ADD_TODO:
             state = [...state, action.payload];
             return state;
+        case constants_1.CHANGE_COMPLETE_STATUS:
+            state = state.map((todo) => {
+                if (todo.id === action.payload.id) {
+                    return Object.assign(Object.assign({}, todo), { isComplete: action.payload.isComplete });
+                }
+                return todo;
+            });
+            return state;
         default:
             return state;
     }

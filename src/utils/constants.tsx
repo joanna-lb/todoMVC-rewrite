@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export const FILTERS_TYPES = {
     All: 'All',
     Active: 'Active',
@@ -22,6 +24,7 @@ export const DELETE_TODO='DELETE_TODO'
 export const  ADD_TODO='ADD_TODO'
 
 export const CHANGE_COMPLETE_STATUS='CHANGE_COMPLETE_STATUS'
+export const SET_ALL_TASKS_COMPLETE_STATUS='SET_ALL_TASKS_COMPLETE_STATUS'
 
 
 
