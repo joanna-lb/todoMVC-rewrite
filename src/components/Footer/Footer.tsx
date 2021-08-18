@@ -7,6 +7,7 @@ import {deleteTodoAction} from "../../Server";
 // import {clearComplete} from "../../redux/reducers";
 import {checkAnyComplete} from "../../shared";
 import {TodoType} from "../../types";
+import {clearComplete} from "../../redux/action";
 
 interface FooterPropsType {
     // changeShowContent:(filterType:string)=>void
@@ -16,27 +17,27 @@ interface FooterPropsType {
 const Footer = ({showContent,todos}:FooterPropsType) => {
 
 
-    // const handleClearComplete =async () => {
-    //     await   todos.filter(todo=>todo.isComplete).forEach(
-    //         todo=> {
-    //          try {
-    //             return  deleteTodoAction(todo.id)
-    //             }catch (e) {
-    //              console.log(e)
-    //          }
-    //         }
-    //     )
-    //     await dispatch(clearComplete())
-    // }
+    const handleClearComplete =async () => {
+        await   todos.filter(todo=>todo.isComplete).forEach(
+            todo=> {
+             try {
+                return  deleteTodoAction(todo.id)
+                }catch (e) {
+                 console.log(e)
+             }
+            }
+        )
+        clearComplete()
+    }
 
     return (
         <footer className='footer'>
             <TodoCount todos={todos}/>
             {/*<Filters changeShowContent={changeShowContent}/>*/}
-            {/*<button data-testid='button' className='clear-completed' style={{visibility:checkAnyComplete(todos)?"visible":"hidden"}}*/}
-            {/*        onClick={handleClearComplete}>*/}
-            {/*    Clear completed*/}
-            {/*</button>*/}
+            <button data-testid='button' className='clear-completed' style={{visibility:checkAnyComplete(todos)?"visible":"hidden"}}
+                    onClick={handleClearComplete}>
+                Clear completed
+            </button>
         </footer>
     )
 };

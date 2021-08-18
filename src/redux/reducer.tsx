@@ -3,7 +3,7 @@ import {
     ADD_TODO,
     CHANGE_COMPLETE_STATUS,
     SET_ALL_TASKS_COMPLETE_STATUS,
-    DELETE_TODO, EDIT_TODO_LIST
+    DELETE_TODO, EDIT_TODO_LIST, CLEAR_COMPLETE
 } from "../utils/constants";
 import {TodoListActionTypes, TodoType} from "../types";
 import exp from "constants";
@@ -43,6 +43,10 @@ export default function todoReducer(state=initialState,action:TodoListActionType
                 return todo;
             })
             return state
+        case CLEAR_COMPLETE:
+                state= state.filter(todo => !todo.isComplete)
+                return state
+
             default:
                 return state
 

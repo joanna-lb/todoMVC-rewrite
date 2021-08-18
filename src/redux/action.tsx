@@ -3,7 +3,7 @@ import {
     SET_TODO_LIST,
     SET_ALL_TASKS_COMPLETE_STATUS,
     CHANGE_COMPLETE_STATUS,
-    DELETE_TODO, EDIT_TODO_LIST
+    DELETE_TODO, EDIT_TODO_LIST, CLEAR_COMPLETE
 } from "../utils/constants";
 import {TodoType} from "../types";
 
@@ -31,4 +31,8 @@ const editTodoList=(id:string,name:string)=>{
     return({type:EDIT_TODO_LIST,payload:{id,name}})
 }
 
-export{setTodoList,addTodo,setAllTasksCompleteStatus,changeCompleteStatus,deleteTodo,editTodoList}
+const clearComplete=()=>{
+    return({type:CLEAR_COMPLETE})
+}
+
+export{setTodoList,addTodo,setAllTasksCompleteStatus,changeCompleteStatus,deleteTodo,editTodoList,clearComplete}
