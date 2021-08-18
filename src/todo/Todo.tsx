@@ -9,6 +9,7 @@ import TodoList from "../components/TodoList/TodoList";
 import Footer from "../components/Footer/Footer";
 import {TodoType} from "../types";
 import * as Actions from "../redux/action";
+import * as constants from "../utils/constants"
 
 
 
@@ -37,18 +38,18 @@ function Todo({setTodoList,todos,addTodo}:DispatchProps) {
 
     },[])
 
-    // const handleChangeShowContent=(filterTypes:string)=>{
-    //     switch (filterTypes) {
-    //         case constants.FILTERS_TYPES.All:
-    //             return  setShowContent(todos)
-    //         case constants.FILTERS_TYPES.Active:
-    //             return   setShowContent(todos.filter(todo=>!todo.isComplete))
-    //         case constants.FILTERS_TYPES.Completed:
-    //             return   setShowContent(todos.filter(todo=>todo.isComplete))
-    //         default:
-    //             return setShowContent(todos)
-    //     }
-    // }
+    const handleChangeShowContent=(filterTypes:string)=>{
+        switch (filterTypes) {
+            case constants.FILTERS_TYPES.All:
+                return  setShowContent(todos)
+            case constants.FILTERS_TYPES.Active:
+                return   setShowContent(todos.filter(todo=>!todo.isComplete))
+            case constants.FILTERS_TYPES.Completed:
+                return   setShowContent(todos.filter(todo=>todo.isComplete))
+            default:
+                return setShowContent(todos)
+        }
+    }
 
 
     return (
@@ -58,8 +59,8 @@ function Todo({setTodoList,todos,addTodo}:DispatchProps) {
                 <TodoList todos={showContent}/>
                 {todos.length > 0 && <Footer
                     todos={todos}
-                    // changeShowContent={handleChangeShowContent}
-                    showContent={showContent}/>}
+                    changeShowContent={handleChangeShowContent}
+                    />}
             </section>
             <Description/>
         </>

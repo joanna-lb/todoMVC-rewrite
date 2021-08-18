@@ -10,6 +10,7 @@ const Server_1 = require("../Server");
 const TodoList_1 = tslib_1.__importDefault(require("../components/TodoList/TodoList"));
 const Footer_1 = tslib_1.__importDefault(require("../components/Footer/Footer"));
 const Actions = tslib_1.__importStar(require("../redux/action"));
+const constants = tslib_1.__importStar(require("../utils/constants"));
 function Todo({ setTodoList, todos, addTodo }) {
     const [showContent, setShowContent] = react_1.useState(todos);
     // @ts-ignore
@@ -21,25 +22,23 @@ function Todo({ setTodoList, todos, addTodo }) {
             }
         });
     }), []);
-    // const handleChangeShowContent=(filterTypes:string)=>{
-    //     switch (filterTypes) {
-    //         case constants.FILTERS_TYPES.All:
-    //             return  setShowContent(todos)
-    //         case constants.FILTERS_TYPES.Active:
-    //             return   setShowContent(todos.filter(todo=>!todo.isComplete))
-    //         case constants.FILTERS_TYPES.Completed:
-    //             return   setShowContent(todos.filter(todo=>todo.isComplete))
-    //         default:
-    //             return setShowContent(todos)
-    //     }
-    // }
+    const handleChangeShowContent = (filterTypes) => {
+        switch (filterTypes) {
+            case constants.FILTERS_TYPES.All:
+                return setShowContent(todos);
+            case constants.FILTERS_TYPES.Active:
+                return setShowContent(todos.filter(todo => !todo.isComplete));
+            case constants.FILTERS_TYPES.Completed:
+                return setShowContent(todos.filter(todo => todo.isComplete));
+            default:
+                return setShowContent(todos);
+        }
+    };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("section", { className: "todoapp" },
             react_1.default.createElement(Header_1.default, { todos: todos, addTodo: addTodo }),
             react_1.default.createElement(TodoList_1.default, { todos: showContent }),
-            todos.length > 0 && react_1.default.createElement(Footer_1.default, { todos: todos, 
-                // changeShowContent={handleChangeShowContent}
-                showContent: showContent })),
+            todos.length > 0 && react_1.default.createElement(Footer_1.default, { todos: todos, changeShowContent: handleChangeShowContent })),
         react_1.default.createElement(Description_1.default, null)));
 }
 const mapStateToProps = (state) => ({

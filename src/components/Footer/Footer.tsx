@@ -10,11 +10,10 @@ import {TodoType} from "../../types";
 import {clearComplete} from "../../redux/action";
 
 interface FooterPropsType {
-    // changeShowContent:(filterType:string)=>void
-    showContent:Array<TodoType>
+     changeShowContent:(filterType:string)=>void
     todos:Array<TodoType>
 }
-const Footer = ({showContent,todos}:FooterPropsType) => {
+const Footer = ({todos,changeShowContent}:FooterPropsType) => {
 
 
     const handleClearComplete =async () => {
@@ -33,7 +32,7 @@ const Footer = ({showContent,todos}:FooterPropsType) => {
     return (
         <footer className='footer'>
             <TodoCount todos={todos}/>
-            {/*<Filters changeShowContent={changeShowContent}/>*/}
+            <Filters changeShowContent={changeShowContent}/>
             <button data-testid='button' className='clear-completed' style={{visibility:checkAnyComplete(todos)?"visible":"hidden"}}
                     onClick={handleClearComplete}>
                 Clear completed
