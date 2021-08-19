@@ -5,39 +5,46 @@ import {
     SET_ALL_TASKS_COMPLETE_STATUS,
     DELETE_TODO, EDIT_TODO_LIST, CLEAR_COMPLETE
 } from "../utils/constants";
-import {TodoListActionTypes, TodoType} from "../types";
+import { TodoType} from "../types";
 import exp from "constants";
 
 const initialState:Array<TodoType>=[]
 
+export interface TodoListActionTypes {
+    type: string,
+    payload: {
+        todo:TodoType
+        data:TodoType[]
+    }
+}
 
 export default function todoReducer(state=initialState,action:TodoListActionTypes): Array<TodoType> {
     switch (action.type) {
         case SET_TODO_LIST:
             const newState:Array<TodoType>=[]
-           action.data.map(todo=>newState.push(todo))
+           action.payload.data.map((todo:TodoType)=>newState.push(todo))
             return newState
         case ADD_TODO:
-            const addTodo=[action.payload]
+            const addTodo=[action.payload.todo]
            return state.concat(addTodo) as Array<TodoType>
         case SET_ALL_TASKS_COMPLETE_STATUS:
        return state.map((todo: TodoType) => {
-                return {...todo, isComplete: action.payload.isComplete}
+                return {...todo, isComplete: action.payload.todo.isComplete}
             })
         case CHANGE_COMPLETE_STATUS:
             return state.map((todo: TodoType) => {
-                if (todo.id === action.payload.id) {
-                    return {...todo, isComplete: action.payload.isComplete}
+                if (todo.id === action.payload.todo.id) {
+                    return {...todo, isComplete: action.payload.todo.isComplete}
                 }
                 return todo;
             })
         case DELETE_TODO:
-            const stateDeleted=state.filter((todo: TodoType) => todo.id !== action.payload.id)
+            const stateDeleted=state.filter((todo: TodoType) => todo.id !== action.payload.todo.id)
             return [...state,stateDeleted] as Array<TodoType>
         case EDIT_TODO_LIST:
            return state.map((todo: TodoType) => {
-                if (todo.id === action.payload.id) {
-                    return {...todo, name: action.payload.name}
+                if (todo.id === action.payload.todo.id) {
+                    return {...todo, name: action.payload.todo.name}
                 }
                 return todo;
             })
