@@ -1,7 +1,7 @@
 
 import React, {useEffect, useState} from "react";
 import './index.css'
-import {deleteTodoAction, updateTodoAction} from "../../Server";
+import {deleteTodoAction, updateTodoAction} from "../../server";
 
 interface TodoPropsType {
     id: string,
@@ -17,32 +17,32 @@ const TodoItems = ({id,name,isComplete,deleteTodo,changeCompleteStatus,editTodoL
     const [todoName, setTodoName] = useState(name)
 
 
-    const handleKeyUp = async (e:any, id:string, todoName:string) => {
+    const handleKeyUp = async (e: any, id: string, todoName: string) => {
         const reg = new RegExp(/^\s+$/)
         if (e.keyCode === 13 && !reg.test(todoName) && todoName.length > 0) {
             await updateTodoAction(id, {name: todoName})
-            editTodoList(id, todoName) ;
-                setIsEdit(false)
+            editTodoList(id, todoName);
+            setIsEdit(false)
         } else if (todoName.length === 0 && e.keyCode === 13) {
             await deleteTodoAction(id)
             deleteTodo(id)
-                setIsEdit(false)
+            setIsEdit(false)
         }
 
 
-   }
+    }
 
     const handleComplete = async (id: string, e: any) => {
         if (e.target.checked) {
             await updateTodoAction(id, {isComplete: true})
-        changeCompleteStatus(id,true)
+            changeCompleteStatus(id, true)
         } else {
             await updateTodoAction(id, {isComplete: false})
-         changeCompleteStatus(id,false)
+            changeCompleteStatus(id, false)
         }
     }
 
-    const handleClickDestroy= async (id:string) => {
+    const handleClickDestroy = async (id: string) => {
         await deleteTodoAction(id)
         deleteTodo(id);
     }

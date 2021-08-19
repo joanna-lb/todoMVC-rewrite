@@ -4,7 +4,7 @@ import {TodoType} from "../types";
 
 
 export const BASE_URL = 'http://localhost:3002/todos'
-// const updateTodoAction = (id, data) => axios.patch(`${BASE_URL}/${id}`, data)
+
 
 const fetchTodoList=()=>
    axios.get(BASE_URL)

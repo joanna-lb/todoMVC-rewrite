@@ -6,7 +6,7 @@ import {TodoType} from "../../types";
 
 
 
-type TodoListPropsType= {
+interface TodoListPropsType {
     todos:Array<TodoType>
     deleteTodo:(id:string)=>void
     changeCompleteStatus:(id:string,status:boolean)=>void

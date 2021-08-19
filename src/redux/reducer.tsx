@@ -14,38 +14,37 @@ const initialState:Array<TodoType>=[]
 export default function todoReducer(state=initialState,action:TodoListActionTypes): Array<TodoType> {
     switch (action.type) {
         case SET_TODO_LIST:
-           state= action.data
-            return state
+            const newState:Array<TodoType>=[]
+           action.data.map(todo=>newState.push(todo))
+            return newState
         case ADD_TODO:
-            state=[...state,action.payload]
-           return state
+            const addTodo=[action.payload]
+           return state.concat(addTodo) as Array<TodoType>
         case SET_ALL_TASKS_COMPLETE_STATUS:
-            state= state.map((todo: TodoType) => {
+       return state.map((todo: TodoType) => {
                 return {...todo, isComplete: action.payload.isComplete}
             })
-            return state
         case CHANGE_COMPLETE_STATUS:
-            state= state.map((todo: TodoType) => {
+            return state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return {...todo, isComplete: action.payload.isComplete}
                 }
                 return todo;
             })
-            return state
         case DELETE_TODO:
-            state=state.filter((todo: TodoType) => todo.id !== action.payload.id)
-            return state
+            const stateDeleted=state.filter((todo: TodoType) => todo.id !== action.payload.id)
+            return [...state,stateDeleted] as Array<TodoType>
         case EDIT_TODO_LIST:
-            state= state.map((todo: TodoType) => {
+           return state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return {...todo, name: action.payload.name}
                 }
                 return todo;
             })
-            return state
+
         case CLEAR_COMPLETE:
-                state= state.filter((todo:TodoType) => !todo.isComplete)
-                return state
+                return state.filter((todo:TodoType) => !todo.isComplete)
+
             default:
                 return state
 

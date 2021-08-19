@@ -6,24 +6,30 @@
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
+  testMatch: [
+    "**/test/**/*.[jt]s?(x)",
+    //  匹配所有test
+    "**/+(*.)+(spec|test).[tj|tsx|test.tsx]s?(x)"
+  ],
   transform: {
     // 将.js后缀的文件使用babel-jest处理
+    // "^.+\\.js$": "babel-jest",
+    // "^.+\\.tsx$": "babel-jest",
     "^.+\\.ts$": "babel-jest",
     "\\.css$":"identity-obj-proxy"
   },
-  testMatch: [
-    "**/__tests__/**/*.[jt]s?(x)",
-    "**/+(*.)+(spec|test).[tj|tsx]s?(x)"
-  ],
   globals: {
     'ts-jest': {
       tsConfig: './tsconfig.json'
     }
   },
-   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  transformIgnorePatterns: ["<rootDir>/node_modules/"],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {
-    '^.+\\.(css|less)$': './jest/style.transform.js'
+    "\\.css$":
+        "identity-obj-proxy",
   },
+
   // Stop running tests after `n` failures
   // bail: 0,
 
@@ -192,8 +198,7 @@ export default {
   // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns:
-    ["<roodDir>/node_modules/"],
+
 
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

@@ -17,7 +17,8 @@ export interface TodoListActionTypes {
         type: string,
         payload:TodoType
         data:TodoType[]
-}
+ //       应该都在payload里面
+ }
 
 
 

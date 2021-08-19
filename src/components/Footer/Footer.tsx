@@ -3,7 +3,7 @@ import Filters from "./Filters";
 import TodoCount from "./TodoCount";
 import './index.css'
 
-import {deleteTodoAction} from "../../Server";
+import {deleteTodoAction} from "../../server";
 
 import {checkAnyComplete} from "../../shared";
 import {TodoType} from "../../types";

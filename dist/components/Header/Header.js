@@ -5,8 +5,8 @@ const React = tslib_1.__importStar(require("react"));
 const react_1 = require("react");
 require("./index.css");
 const shared_1 = require("../../shared");
-const Server_1 = require("../../Server");
-const Server_2 = require("../../Server");
+const server_1 = require("../../server");
+const server_2 = require("../../server");
 const Header = ({ todos, addTodo, setAllTasksCompleteStatus }) => {
     const [name, setName] = react_1.useState('');
     const [allCompleteArrowStyle, setAllCompleteArrowStyle] = react_1.useState(false);
@@ -15,19 +15,19 @@ const Header = ({ todos, addTodo, setAllTasksCompleteStatus }) => {
         const reg = new RegExp(/^\s+$/);
         if (!reg.test(name) && name.length > 0) {
             const newTodo = shared_1.newTodos(name);
-            yield Server_1.createTodo(newTodo);
+            yield server_1.createTodo(newTodo);
             addTodo(newTodo);
             setName("");
         }
     });
     const handleCompleteAll = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         if (todos.filter((todo) => !todo.isComplete).length > 0) {
-            yield Server_2.updateAllTodosAction(todos, { isComplete: true });
+            yield server_2.updateAllTodosAction(todos, { isComplete: true });
             setAllTasksCompleteStatus(true);
             setAllCompleteArrowStyle(true);
         }
         else if (todos.filter((todo) => todo.isComplete).length > 0) {
-            yield Server_2.updateAllTodosAction(todos, { isComplete: false });
+            yield server_2.updateAllTodosAction(todos, { isComplete: false });
             setAllTasksCompleteStatus(false);
             setAllCompleteArrowStyle(false);
         }

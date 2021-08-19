@@ -6,7 +6,7 @@ const Header_1 = tslib_1.__importDefault(require("../components/Header/Header"))
 const Description_1 = tslib_1.__importDefault(require("../components/Description/Description"));
 const react_redux_1 = require("react-redux");
 const redux_1 = require("redux");
-const Server_1 = require("../Server");
+const server_1 = require("../server");
 const TodoList_1 = tslib_1.__importDefault(require("../components/TodoList/TodoList"));
 const Footer_1 = tslib_1.__importDefault(require("../components/Footer/Footer"));
 const Actions = tslib_1.__importStar(require("../redux/action"));
@@ -16,7 +16,7 @@ function Todo({ setTodoList, todos, addTodo, deleteTodo, changeCompleteStatus, s
     const [showContent, setShowContent] = react_1.useState(todos);
     // @ts-ignore
     react_1.useEffect(() => tslib_1.__awaiter(this, void 0, void 0, function* () {
-        yield Server_1.fetchTodoList().then(res => {
+        yield server_1.fetchTodoList().then(res => {
             if (res.data) {
                 setShowContent(res.data);
                 setTodoList(res.data);
@@ -39,7 +39,9 @@ function Todo({ setTodoList, todos, addTodo, deleteTodo, changeCompleteStatus, s
         react_1.default.createElement("section", { className: "todoapp" },
             react_1.default.createElement(Header_1.default, { todos: todos, addTodo: addTodo, setAllTasksCompleteStatus: setAllTasksCompleteStatus }),
             react_1.default.createElement(TodoList_1.default, { todos: showContent, deleteTodo: deleteTodo, changeCompleteStatus: changeCompleteStatus, editTodoList: editTodoList }),
-            todos.length > 0 && react_1.default.createElement(Footer_1.default, { todos: todos, changeShowContent: handleChangeShowContent, clearComplete: clearComplete })),
+            todos && todos.length > 0
+                &&
+                    react_1.default.createElement(Footer_1.default, { todos: todos, changeShowContent: handleChangeShowContent, clearComplete: clearComplete })),
         react_1.default.createElement(Description_1.default, null)));
 }
 const mapStateToProps = (state) => ({

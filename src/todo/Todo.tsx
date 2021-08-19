@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Description from "../components/Description/Description";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
-import {fetchTodoList} from '../Server'
+import {fetchTodoList} from '../server'
 import TodoList from "../components/TodoList/TodoList";
 import Footer from "../components/Footer/Footer";
 import {TodoType} from "../types";
@@ -37,7 +37,7 @@ function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus,setAllT
             res=> {
                 if (res.data) {
                     setShowContent(res.data);
-                   setTodoList(res.data)
+                     setTodoList(res.data)
                 }
             }
         )
@@ -70,7 +70,10 @@ function Todo({setTodoList,todos,addTodo,deleteTodo,changeCompleteStatus,setAllT
                           changeCompleteStatus={changeCompleteStatus}
                           editTodoList={editTodoList}
                 />
-                {todos.length > 0 && <Footer
+                {
+                    todos&& todos.length > 0
+                &&
+                <Footer
                     todos={todos}
                     changeShowContent={handleChangeShowContent}
                     clearComplete={clearComplete}

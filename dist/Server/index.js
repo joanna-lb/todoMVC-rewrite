@@ -4,7 +4,6 @@ exports.updateAllTodosAction = exports.deleteTodoAction = exports.fetchTodoList 
 const tslib_1 = require("tslib");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 exports.BASE_URL = 'http://localhost:3002/todos';
-// const updateTodoAction = (id, data) => axios.patch(`${BASE_URL}/${id}`, data)
 const fetchTodoList = () => axios_1.default.get(exports.BASE_URL);
 exports.fetchTodoList = fetchTodoList;
 const deleteTodoAction = (id) => {

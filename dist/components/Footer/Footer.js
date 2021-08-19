@@ -5,13 +5,13 @@ const react_1 = tslib_1.__importDefault(require("react"));
 const Filters_1 = tslib_1.__importDefault(require("./Filters"));
 const TodoCount_1 = tslib_1.__importDefault(require("./TodoCount"));
 require("./index.css");
-const Server_1 = require("../../Server");
+const server_1 = require("../../server");
 const shared_1 = require("../../shared");
 const Footer = ({ todos, changeShowContent, clearComplete }) => {
     const handleClearComplete = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         yield todos.filter(todo => todo.isComplete).forEach(todo => {
             try {
-                return Server_1.deleteTodoAction(todo.id);
+                return server_1.deleteTodoAction(todo.id);
             }
             catch (e) {
                 console.log(e);

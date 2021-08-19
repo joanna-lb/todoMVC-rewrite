@@ -2,8 +2,8 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import './index.css'
 import { newTodos} from "../../shared";
-import {createTodo}  from '../../Server'
-import {updateAllTodosAction} from "../../Server";
+import {createTodo}  from '../../server'
+import {updateAllTodosAction} from "../../server";
 import {TodoType} from "../../types";
 
 
