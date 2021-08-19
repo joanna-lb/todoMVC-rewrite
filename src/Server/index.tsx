@@ -3,7 +3,7 @@ import axios from "axios";
 import {TodoType} from "../types";
 
 
-export const BASE_URL = 'http://localhost:3000/todos'
+export const BASE_URL = 'http://localhost:3002/todos'
 // const updateTodoAction = (id, data) => axios.patch(`${BASE_URL}/${id}`, data)
 
 const fetchTodoList=()=>
@@ -24,7 +24,6 @@ const updateAllTodosAction=(data:Array<TodoType>,isComplete:object)=>{
 
 
 const createTodo = (todo:object) => {
-
    return axios.post(BASE_URL,todo)
 }
 
