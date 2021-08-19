@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build:watch": "tsc --watch",
-    "lint": "eslint src --ext .js,.ts"
+    "lint": "eslint src --ext .js,.ts",
+    "build": "webpack --mode=production",
+    "start": "webpack-dev-server --mode development --open --hot"
   },
   "repository": {
     "type": "git",

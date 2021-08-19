@@ -18,7 +18,7 @@ const deleteTodoAction = (id:string) => {
 const updateTodoAction = (id:string, data:object) => axios.patch(`${BASE_URL}/${id}`, data)
 
 
-const updateAllTodosAction=(data:any,isComplete:object)=>{
+const updateAllTodosAction=(data:Array<TodoType>,isComplete:object)=>{
   data.forEach((todo:TodoType)=>axios.patch(`${BASE_URL}/${todo.id}`,isComplete))
 }
 
