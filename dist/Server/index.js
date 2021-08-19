@@ -5,18 +5,7 @@ const tslib_1 = require("tslib");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 exports.BASE_URL = 'http://localhost:3000/todos';
 // const updateTodoAction = (id, data) => axios.patch(`${BASE_URL}/${id}`, data)
-const fetchTodoList = () => 
-// axios.get(BASE_URL)
-fetch(`/api/test/todos`, {
-    method: 'GET',
-    mode: 'no-cors',
-    credentials: 'include',
-}).then((response) => {
-    console.log(response);
-    return response.json();
-}).then(response => console.log(response)).catch(e => {
-    console.log(e);
-});
+const fetchTodoList = () => axios_1.default.get(exports.BASE_URL);
 exports.fetchTodoList = fetchTodoList;
 const deleteTodoAction = (id) => {
     return axios_1.default.delete(`${exports.BASE_URL}/${id}`);

@@ -7,19 +7,8 @@ export const BASE_URL = 'http://localhost:3000/todos'
 // const updateTodoAction = (id, data) => axios.patch(`${BASE_URL}/${id}`, data)
 
 const fetchTodoList=()=>
-   // axios.get(BASE_URL)
-    fetch(`/api/test/todos`,{
-        method:'GET',
-        mode:'no-cors',
-        credentials:'include',
-    }).then((response)=>{
-        console.log(response);
-        return response.json()
-    }).then(response=>
-        console.log(response)
-    ).catch(e=>{
-        console.log(e)
-    })
+   axios.get(BASE_URL)
+
 
 
 const deleteTodoAction = (id:string) => {
