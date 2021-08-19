@@ -7,7 +7,7 @@ RUN npm install
 RUN npm install json-server -g
 
 COPY . .
-EXPOSE 8080
+EXPOSE 8081
 RUN npm run build
 
 CMD npm start

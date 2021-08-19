@@ -8,7 +8,8 @@
     "build:watch": "tsc --watch",
     "lint": "eslint src --ext .js,.ts",
     "build": "webpack --mode=production",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "mock": "node mock/server.js --watch"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "json-server": "^0.16.3",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
     "open-browser-webpack-plugin": "0.0.5",
     "style-loader": "^1.0.0",
     "ts-loader": "^4.4.2",
