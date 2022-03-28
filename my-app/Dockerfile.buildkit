@@ -1,0 +1,26 @@
+
+
+# node版本号
+FROM node:15-alpine
+# 工作目录
+WORKDIR /create-react-app
+# 添加所有文件到create-react-app目录
+ADD . /create-react-app
+# 执行命令
+RUN --mount=type=cache,target=/node_modules,id=my_app_npm_module,sharing=locked \
+  npm install 
+
+RUN --mount=type=cache,target=/node_modules,id=my_app_npm_module,sharing=locked \
+  npm run build 
+
+RUN --mount=type=cache,target=/node_modules,id=my_app_npm_module,sharing=locked \
+  npm install -g http-server
+
+  RUN apk add --no-cache openssh-client git
+  RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+  RUN --mount=type=ssh git clone git@github.com:joanna-lb/todoMVC-rewrite.git
+
+# 暴露端口号
+EXPOSE 3000
+# 容器启动之后, 执行http-server 注：./build是指打包后的文件
+CMD http-server ./build -p 3000

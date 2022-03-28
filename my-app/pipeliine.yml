@@ -1,0 +1,17 @@
+
+steps:
+  - name:':traffic_light: Customize Test'
+    commands:
+    - "npm install"
+    - "./node_modules/.bin/react-scripts"
+    branches: New-todo
+  
+
+  - command:  "tests.sh"
+    label: "Release"
+    env:
+      ENV: prod
+      DEBUG: true
+    branches: "New-todo"
+    
+    # envs 表示全局环境变量，会注入到所有 Action 中。
