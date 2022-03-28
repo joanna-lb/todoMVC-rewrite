@@ -3,13 +3,14 @@ steps:
    - label: ":pipeline: Pipeline upload"
     command: buildkite-agent pipeline upload
 
-  - command: "./auto/build"
+  - name:':traffic_light: Customize Test'
+    command: ./auto/build
     label: "Build"
 
   - block: "Release"
     branches: "master"
 
-  - command: "./auto/release"
+  - command: ./auto/release
     label: "Release"
     env:
       ENV: prod
