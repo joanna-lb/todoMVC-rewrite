@@ -1,13 +1,18 @@
-FROM node:current-alpine
+FROM openjdk:8-jdk-alpine
+MAINTAINER "Gao Shuai" <gaoshuai1205@gmail.com>
 
-WORKDIR '/app'
-COPY package.json .
+ENV APP_DIR  /app/
 
-RUN npm install
-RUN npm install json-server -g
+RUN mkdir -p $APP_DIR
+RUN apt
 
-COPY . .
-EXPOSE 8081
-RUN npm run build
+WORKDIR $APP_DIR
+COPY . $APP_DIR
 
-CMD npm start
+RUN $APP_DIR/gradlew build
+
+COPY startup.sh $APP_DIR
+RUN chmod u+x ./startup.sh
+HEALTHCHECK CMD wget -qO-  http://localhost:8080/api/health || exit 1
+EXPOSE 8080
+CMD ["./startup.sh"]
