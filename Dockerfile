@@ -1,18 +1,4 @@
-FROM openjdk:8-jdk-alpine
-MAINTAINER "Gao Shuai" <gaoshuai1205@gmail.com>
+WORKDIR /my-app
 
-ENV APP_DIR  /app/
+COPY package.json .
 
-RUN mkdir -p $APP_DIR
-RUN apt
-
-WORKDIR $APP_DIR
-COPY . $APP_DIR
-
-RUN $APP_DIR/gradlew build
-
-COPY startup.sh $APP_DIR
-RUN chmod u+x ./startup.sh
-HEALTHCHECK CMD wget -qO-  http://localhost:8080/api/health || exit 1
-EXPOSE 8080
-CMD ["./startup.sh"]
